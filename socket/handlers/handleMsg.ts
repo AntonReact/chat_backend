@@ -1,22 +1,23 @@
-function formatTime(item) {
+export {};
+function formatTime(item: Number):String {
   return item >= 10 ? `${item}` : `0${item}`;
 }
 
-function handleMsg({ socket, io, state }) {
+function handleMsg({ socket, io, state }):void {
 
-  socket.on('getInitMsg', () => {
+  socket.on('getInitMsg', ():void => {
     io.emit('message', state)
   })
 
-  socket.on('message', (e) => {
-    const isCommand = e.message[0] === '/';
+  socket.on('message', (e: any):void => {
+    const isCommand: Boolean = e.message[0] === '/';
 
     if (!isCommand) {
-      const date = new Date();
-      const hours = formatTime(date.getHours());
-      const minutes = formatTime(date.getMinutes());
-      const time = `${hours}:${minutes}`;
-      const row = `${e.user}: ${e.message}`;
+      const date: Date = new Date();
+      const hours: String = formatTime(date.getHours());
+      const minutes: String = formatTime(date.getMinutes());
+      const time: String = `${hours}:${minutes}`;
+      const row: String = `${e.user}: ${e.message}`;
 
       console.log(`${row}\n-- ${date}`);
       state.push({ ...e, time, id: state.length + 1 });
@@ -39,4 +40,4 @@ function handleMsg({ socket, io, state }) {
   })
 };
 
-module.exports = handleMsg;
+export default handleMsg;
