@@ -1,5 +1,7 @@
 # chat_backend
 
+You can use this app localy. Also we have a hosting - [server](https://chat-pro-coders.herokuapp.com/), [client](https://chat-procoders.firebaseapp.com/)
+
 ### Step 1
 Run `npm install` or `yarn install`
 
